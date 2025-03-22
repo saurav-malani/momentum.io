@@ -1,0 +1,12 @@
+
+00:00:20 Sam (openai.com): That sounds impressive. I also wanted to inquire about your pricing structure and any specific packages you offer for startups.
+
+00:00:25 Satya (microsoft.com): We have flexible pricing options tailored to different business sizes and needs. For startups, we have special programs and discounts to help you get started with Azure at a reduced cost. I can provide you with more details on our pricing plans if you'd like.
+
+00:00:30 Sam (openai.com): That would be great, Satya. Please go ahead and share more information on the pricing plans and the startup offerings you have available.
+
+00:00:35 Satya (microsoft.com): Sure, I'll email you our pricing brochure along with details on our startup packages after our call. Feel free to reach out if you have any further questions or need assistance in setting up your cloud services with Azure.
+
+00:00:40 Sam (openai.com): Thank you, Satya. I appreciate your help and look forward to reviewing the information you'll send over. Have a great day!
+
+00:00:45 Satya (microsoft.com): You're welcome, Sam. It was a pleasure speaking with you. Have a wonderful day as well!

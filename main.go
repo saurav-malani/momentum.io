@@ -1,45 +1,38 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+
+	service "github.com/saurav-malani/momentumio/service"
+	utility "github.com/saurav-malani/momentumio/utility"
 )
 
-/*
-Upon running this 3 options will be displayed in console.
-those 3 options will be corrsponding to the 3 features we provide that a user can make use of.
-1. Generate Mock sales transcript.
-Upon calling this function. A mock sales (very realistic looking) transcript will be generated, making use of chatgpt API.
-This will be printed in console and also saved to a local file.
-
-2. Given location of a transcript file as input, return summary (using chatgpt API) of important points that could be of use in context of understanding the clients requirement and closing the deal.
-3. Given Transcript file & query as input, return answer for the query, making use of the chatgpt API.
-*/
-
-// Upon calling this function. A mock sales (very realistic looking) transcript will be generated, making use of chatgpt API.
-func generateMockTranscript() {
-	fmt.Println("generate mock transcript feature called.")
-}
-
-// Given location of a transcript file as input, return summary (using chatgpt API) of important points that could be of use in context
-//
-//	of understanding the clients requirement and closing the deal.
-func summarizeTranscriptFile() {
-	fmt.Println("summarize transcript feature called.")
-}
-
-// Given Transcript file & query as input, return answer for the query, making use of the chatgpt API.
-func queryTranscriptFile() {
-	fmt.Println("query transcript feature called.")
+type CallAnalyzer interface {
+	GenerateMockTranscript() string
+	SummarizeTranscript(filePath string) string
+	QueryTranscript(filePath, query string) string
 }
 
 func main() {
+	utility.LoadEnv()
+	apiKey := os.Getenv("OPENAI_API_KEY")
+	if apiKey == "" {
+		fmt.Println("Error: OPENAI_API_KEY not found in environment")
+		return
+	}
+	callAnalyzer := service.NewCallAnalyzerClient(apiKey)
 	for {
-		fmt.Println("----Welcome to Sales Helper----")
-		fmt.Println("What feature would you like to make use of?")
-		fmt.Println("Type '1' to Generate Mock Sales Transcript")
-		fmt.Println("Type '2' to Summarize a Transcript File")
-		fmt.Println("Type '3' Query a Transcript File")
-		fmt.Println("Type '4' to Exit")
+		{
+			fmt.Println("----Welcome to Sales Helper----")
+			fmt.Println("What feature would you like to make use of?")
+			fmt.Println("Type '1' to Generate Mock Sales Transcript")
+			fmt.Println("Type '2' to Summarize a Transcript File")
+			fmt.Println("Type '3' Query a Transcript File")
+			fmt.Println("Type '4' to Exit")
+		}
+
 		var input int
 		_, err := fmt.Scan(&input)
 		if err != nil {
@@ -48,13 +41,25 @@ func main() {
 
 		switch input {
 		case 1:
-			generateMockTranscript()
+			fmt.Println(*callAnalyzer.GenerateMockTranscript())
 
 		case 2:
-			summarizeTranscriptFile()
+			fmt.Println("Please provide the absolute Transcript File path you would like to Summarize.")
+			var filename string
+			fmt.Scan(&filename)
+			fmt.Println(*callAnalyzer.SummarizeTranscript(filename))
 
 		case 3:
-			queryTranscriptFile()
+			fmt.Println("Please provide the absolute file path of the Transcript File you would like to query.")
+			var filename string
+			fmt.Scan(&filename)
+			fmt.Println("Please provide your query?")
+			query, err := bufio.NewReader(os.Stdin).ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading query: ", err)
+				break
+			}
+			fmt.Println(*callAnalyzer.QueryTranscript(filename, query))
 
 		case 4:
 			fmt.Println("Exiting Sales Helper. Goodbye!")

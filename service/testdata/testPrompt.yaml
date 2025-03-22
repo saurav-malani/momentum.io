@@ -1,0 +1,6 @@
+prompts:
+  mock_transcript: "Generate a realistic sales transcript."
+  summarize_transcript: "Summarize the following transcript:"
+  query_transcript: "Provide an answer based on the following transcript:"
+  greeting: "Hello! How can I assist you today?"
+  farewell: "Thank you for using our service. Have a great day!"

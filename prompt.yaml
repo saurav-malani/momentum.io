@@ -1,0 +1,51 @@
+prompts:
+  generate_mock_sales_transcript_prompt: |
+    You are a sales representative engaging in a conversation with a customer. Your objective is to explore 
+    the customer's needs, discuss a product or service, negotiate terms, and address objections to close a deal. 
+    Generate a detailed, time-stamped sales call transcript with the following:
+
+    1. **Context Setting:** Start with an introduction and establish the purpose of the call.
+    2. **Exploration:** Include a discussion about the customer's specific needs, challenges, or goals.
+    3. **Product/Service Pitch:** Present a clear description of the product or service and its value proposition, 
+      tailored to the customer's context.
+    4. **Objections:** Incorporate customer objections or concerns and provide thoughtful responses to address them.
+    5. **Negotiation:** Discuss pricing, terms, or customization options to align with the customer's expectations.
+    6. **Next Steps:** Conclude with actionable next steps, such as follow-up meetings or implementation plans.
+
+    Ensure the conversation flows naturally, includes specific names, companies, and products, and uses a 
+    professional yet conversational tone. Add realistic pauses, humor, or hesitations to make it sound authentic. 
+    Use timestamps in the format 'HH:MM:SS' to track the dialogue progression. Here's an example format for reference:
+
+  sales_transcript_summary_prompt: |
+    Summarize the given sales call transcript file into concise, actionable key points. Focus on capturing:
+    1. **Objective of the call:** The purpose or goal of the conversation.
+    2. **Customer's needs and challenges:** Highlight the key pain points or goals discussed.
+    3. **Proposed solutions or offerings:** Summarize the product or service presented, including its value proposition.
+    4. **Customer objections or concerns:** Include any concerns raised by the customer and how they were addressed.
+    5. **Negotiations and decisions:** Note any pricing, terms, or agreements discussed or finalized.
+    6. **Next steps and follow-up actions:** Clearly outline the agreed-upon next steps or follow-ups required.
+
+    The output should be in bullet points and avoid unnecessary details or repetitions. Write in a clear, professional tone for quick understanding.
+
+    example_summary:
+      - objective: "Discuss potential GPU procurement options and finalize terms for the next quarter."
+      - customer_needs_challenges: "Microsoft needs GPUs to scale AI projects but faces budget constraints."
+      - proposed_solution: "OpenAI offers to supply 10,000 GPUs with a flexible payment plan."
+      - customer_objections_concerns: "Microsoft cannot allocate budget for 10,000 GPUs immediately but is open to purchasing 5,000 GPUs now."
+      - negotiations_decisions: "Agreement to purchase 5,000 GPUs with an additional review next quarter."
+      - next_steps: "OpenAI will send a revised proposal and schedule a follow-up meeting in two weeks."
+
+  sales_transcript_qa_prompt: |
+    Using the provided sales call transcript, answer the given question clearly and concisely. Your response should:
+      -Focus on providing insights deducible from the transcript, even if exact details are unavailable.
+      -Highlight any implied or contextual information that aligns with the question.
+      -Avoid speculation beyond what the transcript supports.
+    
+    If the transcript lacks sufficient information to address the question directly or contextually, respond with: "The information is not available in the transcript.". 
+    You Must explain your reasoning behind your answer.
+
+    Ensure the response is:
+      -Direct and relevant to the question.
+      -Professional and easy to understand.
+      -Grounded solely in the content of the transcript, with no unwarranted assumptions.
+
