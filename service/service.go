@@ -79,7 +79,6 @@ func (ca *CallAnalyzerClient) QueryTranscript(filePath, query string) *string {
 		log.Fatalf("Error loading prompt: %v", err)
 	}
 	combinedPrompt := prompt + "\n\n" + fmt.Sprint("Query Question: "+query)
-	fmt.Println("combined Prompt: ", combinedPrompt)
 	filepaths := []string{filePath}
 	ans, err := ca.api.GenerateChatCompletionWithFiles(combinedPrompt, maxTokens, filepaths...)
 	if err != nil {
